@@ -32,7 +32,7 @@ def get_image_amount(url):
     #这里就相当于重复造轮子了，因为基本的代码逻辑跟上一个函数一模一样。想要简单的话就是定义一个元组，然后把获取标题、获取链接、获取图片总数的3组函数的逻辑揉在一起，最后将结果作为元组输出。不过作为新手教程，还是以简单易懂为好吧。想挑战的同学可以试试写元组模式
     response = requests.get(url).content
     selector = html.fromstring(response)
-    image_amount = selector.xpath("//div[@class='page']/a[last()-2]/text()")[0]
+    image_amount = selector.xpath("//div[@class='page']/a[last()-1]/text()")[0]
     # a标签的倒数第二个区块就是图片集的最后一页，也是图片总数，所以直接取值就可以
     return image_amount
 
@@ -42,7 +42,7 @@ def get_image_detail_website(url):
     response = requests.get(url).content
     selector = html.fromstring(response)
     image_detail_websites = []
-    image_amount = selector.xpath("//div[@class='page']/a[last()-2]/text()")[0]
+    image_amount = selector.xpath("//div[@class='page']/a[last()-1]/text()")[0]
     #这里重复构造变量，主要是为了获取图片总数。更高级的方法是使用函数间的传值，但是我忘了怎么写了，所以用了个笨办法。欢迎大家修改
     #构建图片具体地址的容器
     for i in range(int(image_amount)):
