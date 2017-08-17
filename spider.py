@@ -15,7 +15,7 @@ def get_page_number(num):
     urls = []
     # 准备容器
     for i in selector.xpath("//ul/li/a/@href"):
-    # 利用xpath定位到所有的套图的详细地址
+        # 利用xpath定位到所有的套图的详细地址
         urls.append(i)
         # 遍历所有地址，添加到容器中
     return urls
